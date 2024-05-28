@@ -1,0 +1,146 @@
+# USER API
+post http://localhost:4000/user-api/user
+Content-Type: application/json
+
+{
+    "usertype":"user",
+    "username":"helo",
+    "password":"heloo",
+    "email":"heloo@gmail.com"
+}
+
+###
+post http://localhost:4000/user-api/login
+Content-Type: application/json
+
+{
+    "usertype":"user",
+    "username":"ravi",
+    "password":"ravi"
+}
+
+###
+
+get http://localhost:4000/user-api/articles
+###
+
+# Write Comment
+post http://localhost:4000/user-api/comment/1709057015
+Content-Type: application/json
+
+{
+    "username":"ravi",
+    "comment":"Amazing content" 
+}
+
+###
+
+# AUTHOR API
+# Registering new author
+post http://localhost:4000/author-api/author
+Content-Type: application/json
+
+{
+    "usertype":"author",
+    "authorname":"jay",
+    "password":"jay",
+    "articles":["article3","article4","article5"],
+    "email":"jay@gmail.com"
+}
+###
+# Login of authors
+post http://localhost:4000/author-api/login
+Content-Type: application/json
+
+{
+    "usertype":"author",
+    "username":"rohit",
+    "password":"rohit"
+}
+
+###
+# Getting the articles written by an author
+get http://localhost:4000/author-api/my-articles/rohit
+
+###
+
+# Add new articles by author
+post http://localhost:4000/author-api/article
+Content-Type: application/json
+
+{
+    "articleId":"{{$timestamp}}",
+    "title":"Fundamentals of Javascript",
+    "category":"Programming",
+    "content":"JavaScript is a high-level, often just-in-time compiled language that conforms to the ECMAScript standard.[11] It has dynamic typing, prototype-based object-orientation, and first-class functions. It is multi-paradigm, supporting event-driven, functional, and imperative programming styles. It has application programming interfaces (APIs) for working with text, dates, regular expressions, standard data structures, and the Document Object Model (DOM).",
+    "dateOfCreation":"{{$datetime iso8601}}",
+    "dateOfModification":"{{$datetime iso8601}}",
+    "username":"rohit",
+    "comments":[],
+    "status":true
+}
+###
+
+# Update articles by author
+put http://localhost:4000/author-api/article
+Content-Type: application/json
+
+{
+    "articleId":"1709057015",
+    "title":"Fundamentals of Javascript",
+    "category":"Programming",
+    "content":"*Javascript* is a high-level, often just-in-time compiled language that conforms to the ECMAScript standard.[11] It has dynamic typing, prototype-based object-orientation, and first-class functions. It is multi-paradigm, supporting event-driven, functional, and imperative programming styles. It has application programming interfaces (APIs) for working with text, dates, regular expressions, standard data structures, and the Document Object Model (DOM).",
+    "dateOfCreation":"2024-02-27T18:03:35.279Z",
+    "dateOfModification":"{{$datetime iso8601}}",
+    "username":"rohit",
+    "comments":[],
+    "status":true
+}
+###
+
+# Soft delete an article by articleId
+put http://localhost:4000/author-api/article/1709057015
+Content-Type: application/json
+
+{
+    "articleId":"1709057015",
+    "title":"Fundamentals of Javascript",
+    "category":"Programming",
+    "content":"*Javascript* is a high-level, often just-in-time compiled language that conforms to the ECMAScript standard.[11] It has dynamic typing, prototype-based object-orientation, and first-class functions. It is multi-paradigm, supporting event-driven, functional, and imperative programming styles. It has application programming interfaces (APIs) for working with text, dates, regular expressions, standard data structures, and the Document Object Model (DOM).",
+    "dateOfCreation":"2024-02-27T18:03:35.279Z",
+    "dateOfModification":"{{$datetime iso8601}}",
+    "username":"rohit",
+    "comments":[],
+    "status":true
+}
+###
+
+
+
+###
+
+# ADMIN API
+# Registration of Admin
+post http://localhost:4000/admin-api/admin
+Content-Type: application/json
+
+{
+    "adminname":"admin1",
+    "password":"admin1",
+    "email":"admin1@gmail.com"
+}
+
+###
+# Login of Admin
+get http://localhost:4000/admin-api/login
+Content-Type: application/json
+
+{
+    "adminname":"admin1",
+    "password":"admin1"
+}
+
+###
+# Getting all the articles by admin
+get http://localhost:4000/admin-api/articles
+###
