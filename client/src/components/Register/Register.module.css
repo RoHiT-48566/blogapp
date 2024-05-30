@@ -1,0 +1,91 @@
+/* Register.module.css */
+
+/* General Styles */
+.registration {
+  font-family: "Inconsolata", monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #f8f9fa;
+  padding: 1rem;
+}
+
+.registrationForm {
+  border: 1px solid black;
+  border-radius: 25px;
+  background-color: #ffffff;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 50%; /* Set initial width to 50% */
+  max-width: 500px;
+  margin: 2rem auto;
+}
+
+.registrationFormLabel {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.formCheck {
+  display: inline-block;
+}
+
+.formCheckInput {
+  margin-right: 0.5rem;
+}
+
+.inputText {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #28a745;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #218838;
+}
+
+.textDanger {
+  color: #dc3545;
+  margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media (min-width: 576px) {
+  .registrationForm {
+    width: 90%;
+  }
+}
+
+@media (min-width: 768px) {
+  .registrationForm {
+    width: 80%;
+  }
+}
+
+@media (min-width: 992px) {
+  .registrationForm {
+    width: 70%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .registrationForm {
+    width: 60%;
+  }
+}

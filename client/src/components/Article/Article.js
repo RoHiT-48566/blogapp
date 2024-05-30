@@ -1,4 +1,3 @@
-// import "./Article.css";
 import { useLocation } from "react-router-dom";
 import { Fragment, useEffect, useState } from "react";
 import { axiosWithToken } from "../../axiosWithToken";
@@ -14,23 +13,23 @@ import { FcPortraitMode } from "react-icons/fc";
 import { BiCommentAdd } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { MdRestore } from "react-icons/md";
+import styles from "./Article.module.css";
 
 function Article() {
   const { state } = useLocation();
-  let { currentUser } = useSelector((state) => state.userAuthorLoginReducer);
-
-  let { register, handleSubmit } = useForm();
-  let [comment, setComment] = useState("");
-  let navigate = useNavigate();
-  let [articleEditStatus, setArticleEditStatus] = useState(false);
-  let [currentArticle, setCurrentArticle] = useState(state);
+  const { currentUser } = useSelector((state) => state.userAuthorLoginReducer);
+  const { register, handleSubmit } = useForm();
+  const [comment, setComment] = useState("");
+  const navigate = useNavigate();
+  const [articleEditStatus, setArticleEditStatus] = useState(false);
+  const [currentArticle, setCurrentArticle] = useState(state);
 
   const deleteArticle = async () => {
     let art = { ...currentArticle };
     delete art._id;
     let res = await axiosWithToken.put(
       `http://localhost:4000/author-api/article/${currentArticle.articleId}`,
-      art,
+      art
     );
     if (res.data.message === "Article Deleted!") {
       setCurrentArticle({ ...currentArticle, state: res.data.payload });
@@ -42,42 +41,42 @@ function Article() {
     delete art._id;
     let res = await axiosWithToken.put(
       `http://localhost:4000/author-api/article/${currentArticle.articleId}`,
-      art,
+      art
     );
     if (res.data.message === "Article Restored!") {
       setCurrentArticle({ ...currentArticle, status: res.data.payload });
     }
   };
 
-  //add comment top an article by user
+  // Add comment to an article by user
   const writeComment = async (commentObj) => {
     commentObj.username = currentUser.username;
     let res = await axiosWithToken.post(
       `http://localhost:4000/user-api/comment/${state.articleId}`,
-      commentObj,
+      commentObj
     );
     if (res.data.message === "Comment posted") {
       setComment(res.data.message);
     }
   };
 
-  //enable edit state
+  // Enable edit state
   const enableEditState = () => {
     setArticleEditStatus(true);
   };
 
-  //disable edit state
+  // Save modified article
   const saveModifiedArticle = async (editedArticle) => {
     let modifiedArticle = { ...state, ...editedArticle };
-    //change date of modification
+    // Change date of modification
     modifiedArticle.dateOfModification = new Date();
-    //remove _id
+    // Remove _id
     delete modifiedArticle._id;
 
-    //make http put req to save modified article in db
+    // Make HTTP PUT request to save modified article in db
     let res = await axiosWithToken.put(
       "http://localhost:4000/author-api/article",
-      modifiedArticle,
+      modifiedArticle
     );
     if (res.data.message === "Article modified") {
       setArticleEditStatus(false);
@@ -87,7 +86,7 @@ function Article() {
     }
   };
 
-  //convert ISO date to UTC data
+  // Convert ISO date to UTC data
   function ISOtoUTC(iso) {
     let date = new Date(iso).getUTCDate();
     let day = new Date(iso).getUTCDay();
@@ -96,28 +95,28 @@ function Article() {
   }
 
   return (
-    <div>
+    <div className={styles.article}>
       {articleEditStatus === false ? (
         <>
-          <div className="d-flex justify-content-between">
+          <div className={styles.articleDetails}>
             <div>
-              <p className="display-3 me-4">{state.title}</p>
-              <span className="py-3">
-                <small className=" text-secondary me-4">
+              <span>
+                <small className={styles.date}>
                   <FcCalendar className="fs-4" />
-                  Created on:{ISOtoUTC(state.dateOfCreation)}
+                  Created on: {ISOtoUTC(state.dateOfCreation)}
                 </small>
-                <small className=" text-secondary">
+                <small className={styles.date}>
                   <FcClock className="fs-4" />
                   Modified on: {ISOtoUTC(state.dateOfModification)}
                 </small>
               </span>
+              <p className={styles.articleTitle}>{state.title}</p>
             </div>
             <div>
               {currentUser.usertype === "author" && (
                 <>
                   <button
-                    className="me-2 btn btn-warning "
+                    className="me-2 btn btn-warning"
                     onClick={enableEditState}
                   >
                     <CiEdit className="fs-2" />
@@ -141,65 +140,47 @@ function Article() {
               )}
             </div>
           </div>
-          <p className="lead mt-3" style={{ whiteSpace: "pre-line" }}>
-            {state.content}
-          </p>
-          {/* user comments */}
-          <div>
-            {/* read existing comments */}
-            <div className="comments my-4">
-              {state.comments.length === 0 ? (
-                <p className="display-3">No comments yet...</p>
-              ) : (
-                state.comments.map((commentObj, ind) => {
-                  return (
-                    <div key={ind} className="bg-light  p-3">
-                      <p
-                        className="fs-4"
-                        style={{
-                          color: "dodgerblue",
-                          textTransform: "capitalize",
-                        }}
-                      >
-                        <FcPortraitMode className="fs-2 me-2" />
-                        {commentObj.username}
-                      </p>
-
-                      <p
-                        style={{
-                          fontFamily: "fantasy",
-                          color: "lightseagreen",
-                        }}
-                        className="ps-4"
-                      >
-                        <FcComments className="me-2" />
-                        {commentObj.comment}
-                      </p>
-                    </div>
-                  );
-                })
-              )}
-            </div>
-
-            <h1>{comment}</h1>
-            {/* write comment by user */}
-            {currentUser.usertype === "user" && (
-              <form onSubmit={handleSubmit(writeComment)}>
-                <input
-                  type="text"
-                  {...register("comment")}
-                  className="form-control mb-4 "
-                  placeholder="Write comment here...."
-                />
-                <button type="submit" className="btn btn-success">
-                  Add a Comment <BiCommentAdd className="fs-3" />
-                </button>
-              </form>
+          <p className={styles.articleContent}>{state.content}</p>
+          <div className={styles.comments}>
+            {state.comments.length === 0 ? (
+              <p>No comments yet...</p>
+            ) : (
+              state.comments.map((commentObj, ind) => {
+                return (
+                  <div key={ind} className={styles.commentItem}>
+                    <p className={styles.commentUsername}>
+                      <FcPortraitMode className="fs-2 me-2" />
+                      {commentObj.username}
+                    </p>
+                    <p className={styles.commentText}>
+                      <FcComments className="me-2" />
+                      {commentObj.comment}
+                    </p>
+                  </div>
+                );
+              })
             )}
           </div>
+          <h1>{comment}</h1>
+          {currentUser.usertype === "user" && (
+            <form onSubmit={handleSubmit(writeComment)}>
+              <input
+                type="text"
+                {...register("comment")}
+                className={`form-control mb-4 ${styles.editInput}`}
+                placeholder="Write comment here...."
+              />
+              <button type="submit" className="btn btn-success">
+                Add a Comment <BiCommentAdd className="fs-3" />
+              </button>
+            </form>
+          )}
         </>
       ) : (
-        <form onSubmit={handleSubmit(saveModifiedArticle)}>
+        <form
+          className={styles.editForm}
+          onSubmit={handleSubmit(saveModifiedArticle)}
+        >
           <div className="mb-4">
             <label htmlFor="title" className="form-label">
               Title
@@ -234,7 +215,7 @@ function Article() {
             </label>
             <textarea
               {...register("content")}
-              className="form-control"
+              className={`form-control ${styles.editInput}`}
               id="content"
               rows="10"
               defaultValue={state.content}

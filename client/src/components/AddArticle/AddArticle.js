@@ -1,9 +1,9 @@
-import "./AddArticle.css";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styles from "./AddArticle.module.css";
 
 function AddArticle() {
   let { register, handleSubmit } = useForm();
@@ -28,7 +28,7 @@ function AddArticle() {
     // Make http  post request
     let res = await axiosWithToken.post(
       "http://localhost:4000/author-api/article",
-      article,
+      article
     );
     if (res.data.message === "New articles published") {
       navigate(`/author-profile/my-articles/${currentUser.username}`);
@@ -38,61 +38,62 @@ function AddArticle() {
   };
 
   return (
-    <div className="container ">
-      <div className="row justify-content-center mt-5">
-        <div className="col-lg-8 col-md-8 col-sm-10">
-          <div className="card shadow">
-            <div className="card-title text-center border-bottom">
-              <h2 className="p-3">Write an Article</h2>
-            </div>
-            <div className="card-body bg-light">
-              {/* {err.length!==0&&<p className='text-danger fs-5'>{err}</p>} */}
-              <form onSubmit={handleSubmit(postNewArticle)}>
-                <div className="mb-4">
-                  <label htmlFor="title" className="form-label">
-                    Title
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="title"
-                    {...register("title")}
-                  />
-                </div>
+    <div className={styles.container}>
+      <div className={styles.formContainer}>
+        <div className={`${styles.card}`}>
+          <div className={`${styles.cardTitle}`}>
+            <h2 className={`${styles.head}`}>Write an Article</h2>
+          </div>
+          <div className={`${styles.cardBody}`}>
+            {/* {err.length!==0&&<p className='text-danger fs-5'>{err}</p>} */}
+            <form onSubmit={handleSubmit(postNewArticle)}>
+              <div className={styles.formGroup}>
+                <label htmlFor="title" className={styles.formLabel}>
+                  Title
+                </label>
+                <input
+                  type="text"
+                  className={styles.formControl}
+                  id="title"
+                  {...register("title")}
+                />
+              </div>
 
-                <div className="mb-4">
-                  <label htmlFor="category" className="form-label">
-                    Select a category
-                  </label>
-                  <select
-                    {...register("category")}
-                    id="category"
-                    className="form-select"
-                  >
-                    <option value="programming">Programming</option>
-                    <option value="AI&ML">AI&ML</option>
-                    <option value="database">Database</option>
-                  </select>
-                </div>
-                <div className="mb-4">
-                  <label htmlFor="content" className="form-label">
-                    Content
-                  </label>
-                  <textarea
-                    {...register("content")}
-                    className="form-control"
-                    id="content"
-                    rows="10"
-                  ></textarea>
-                </div>
+              <div className={styles.formGroup}>
+                <label htmlFor="category" className={styles.formLabel}>
+                  Select a category
+                </label>
+                <select
+                  {...register("category")}
+                  id="category"
+                  className={styles.formSelect}
+                >
+                  <option value="programming">Programming</option>
+                  <option value="AI&ML">AI&ML</option>
+                  <option value="database">Database</option>
+                  <option value="webdevelopment">Web Development</option>
+                  <option value="blockchain">Block Chain</option>
+                  <option value="datascience">Data Science</option>
+                </select>
+              </div>
+              <div className={styles.formGroup}>
+                <label htmlFor="content" className={styles.formLabel}>
+                  Content
+                </label>
+                <textarea
+                  {...register("content")}
+                  className={styles.formControl}
+                  id="content"
+                  rows="10"
+                ></textarea>
+              </div>
 
-                <div className="text-end">
-                  <button type="submit" className="bg-success">
-                    Post
-                  </button>
-                </div>
-              </form>
-            </div>
+              <div className={styles.textEnd}>
+                <button type="submit" className={`${styles.submitButton}`}>
+                  Post
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

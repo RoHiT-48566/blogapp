@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styles from "./Register.module.css";
 
 function Register() {
   const { register, handleSubmit } = useForm();
@@ -13,7 +14,7 @@ function Register() {
     try {
       const res = await axios.post(
         `http://localhost:4000/${registerUserObj.usertype}-api/${registerUserObj.usertype}`,
-        registerUserObj,
+        registerUserObj
       );
       console.log(res);
       if (
@@ -31,38 +32,39 @@ function Register() {
   }
 
   return (
-    <div>
-      <h1 className="text-center display-1 text-light bg-dark mt-3 homeHeader d-block mx-auto w-50 rounded">
-        Registration
-      </h1>
-      {err && <p className="text-danger fs-3 text-center">{err}</p>}
+    <div className={styles.registration}>
+      {err && <p className={`${styles.textDanger} fs-3 text-center`}>{err}</p>}
       <form
-        className="border border-dark rounded bg-light d-block mx-auto m-5 p-5 w-50 text-center"
+        className={`${styles.registrationForm} bg-light d-block mx-auto m-5 p-5 w-50 text-center`}
         onSubmit={handleSubmit(handleRegisterSubmit)}
       >
-        <div className="m-3 d-flex">
-          <label htmlFor="user" className="form-label">
+        <div className="m-3 text-center">
+          <label htmlFor="user" className={styles.registrationFormLabel}>
             User Type
           </label>
-          <div className="form-check mx-2">
+          <div
+            className={`${styles.formCheck} form-check form-check-inline mx-2`}
+          >
             <input
               type="radio"
               id="author"
               value="author"
               {...register("usertype", { required: true })}
-              className="form-check-input"
+              className={`${styles.formCheckInput} form-check-input`}
             />
             <label htmlFor="author" className="form-check-label">
               Author
             </label>
           </div>
-          <div className="form-check mx-2">
+          <div
+            className={`${styles.formCheck} form-check form-check-inline mx-2`}
+          >
             <input
               type="radio"
               id="user"
               value="user"
               {...register("usertype", { required: true })}
-              className="form-check-input"
+              className={`${styles.formCheckInput} form-check-input`}
             />
             <label htmlFor="user" className="form-check-label">
               User
@@ -71,43 +73,43 @@ function Register() {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="username" className="form-label">
+          <label htmlFor="username" className={styles.registrationFormLabel}>
             Username
           </label>
           <input
             type="text"
             id="username"
-            className="form-control"
+            className={styles.inputText}
             {...register("username", { required: true })}
             autoComplete="username"
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="password" className="form-label">
+          <label htmlFor="password" className={styles.registrationFormLabel}>
             Password
           </label>
           <input
             type="password"
             id="password"
-            className="form-control"
+            className={styles.inputText}
             {...register("password", { required: true })}
             autoComplete="new-password"
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">
+          <label htmlFor="email" className={styles.registrationFormLabel}>
             Email
           </label>
           <input
             type="email"
             id="email"
-            className="form-control"
+            className={styles.inputText}
             {...register("email", { required: true })}
             autoComplete="email"
           />
         </div>
         <div className="mb-3">
-          <button type="submit" className="btn btn-success">
+          <button type="submit" className={styles.submitButton}>
             Register
           </button>
         </div>

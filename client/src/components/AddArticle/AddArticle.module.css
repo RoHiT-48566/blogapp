@@ -1,0 +1,82 @@
+/* AddArticle.module.css */
+
+.container {
+  font-family: "Inconsolata", monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.head {
+  text-align: center;
+}
+
+.formContainer {
+  padding: 20px;
+  width: 75%;
+  background-color: whitesmoke;
+  border: 1px solid rgb(41, 41, 41);
+  border-radius: 50px;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+}
+
+.cardTitle {
+  background-color: #f0f0f0;
+  border-radius: 10px 10px 0 0;
+  padding: 10px;
+}
+
+.cardTitle h2 {
+  color: #333;
+  margin: 0;
+}
+
+.cardBody {
+  border-radius: 0 0 10px 10px;
+  padding: 20px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formLabel {
+  font-weight: bold;
+}
+
+.formControl {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.formSelect {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.textEnd {
+  text-align: end;
+}
+
+.submitButton {
+  color: white;
+  background-color: #28a745; /* Bootstrap's success color */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .formContainer {
+    padding: 10px;
+  }
+}

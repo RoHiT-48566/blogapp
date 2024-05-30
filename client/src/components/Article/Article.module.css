@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap");
+/* Article.module.css */
+.article {
+  font-family: "Inconsolata", monospace;
+  margin: 2rem;
+}
+
+.articleTitle {
+  font-size: 2rem;
+  text-align: center;
+  margin: 1.5rem;
+}
+
+.date {
+  font-family: "Inconsolata", monospace;
+  font-size: 1rem;
+  margin: 1.5rem;
+}
+
+.articleDetails {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.articleDetails small {
+  margin-right: 10px;
+}
+
+.articleContent {
+  font-family: "Inconsolata", monospace;
+  white-space: pre-line;
+  margin-bottom: 20px;
+  font-size: 1.2rem; /* Adjust font size for the article content */
+}
+
+.comments {
+  font-family: "Inconsolata", monospace;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.commentItem {
+  background-color: #f7f7f7;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.commentUsername {
+  color: dodgerblue;
+  text-transform: capitalize;
+}
+
+.commentText {
+  font-family: fantasy;
+  color: lightseagreen;
+}
+
+.editForm {
+  margin-top: 20px;
+}
+
+.editInput {
+  margin-bottom: 10px;
+  font-size: 1rem; /* Adjust font size for the input fields */
+}

@@ -1,0 +1,57 @@
+/* ArticlesByAuthor.module.css */
+
+.articlesContainer {
+  font-family: "Inconsolata", monospace;
+  /* Add any additional styles for the articles container */
+}
+
+.articleCard {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  height: 200px; /* Adjust the height as needed */
+}
+
+.articleContent {
+  overflow: hidden; /* Hide any overflowing content */
+  text-overflow: ellipsis; /* Display ellipsis (...) for overflowed text */
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.articleCard:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.articleTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  /* Add any additional styles for the article title */
+}
+
+.readMoreButton {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* Add any additional styles for the read more button */
+}
+
+.readMoreButton:hover {
+  background-color: #218838;
+}
+
+.articleDate {
+  font-size: 0.8rem;
+  color: #777;
+  /* Add any additional styles for the article date */
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

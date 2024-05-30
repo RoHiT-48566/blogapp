@@ -1,44 +1,50 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../Navbar/Navbar.css";
 import { useSelector, useDispatch } from "react-redux";
 import { resetState } from "../../redux/slices/userAuthorSlice";
+import styles from "./Navbar.module.css"; // Import CSS module
 
 function Navbar() {
-  let { loginUserStatus, errorOccured, errMsg, currentUser } = useSelector(
-    (state) => state.userAuthorLoginReducer,
+  let { loginUserStatus, currentUser } = useSelector(
+    (state) => state.userAuthorLoginReducer
   );
 
   let dispatch = useDispatch();
   function logOut() {
-    // Remove token from local storage
     localStorage.removeItem("token");
     dispatch(resetState());
   }
+
   return (
-    <ul className="nav bg-dark text-primary justify-content-end navbar">
+    <ul className={`${styles.navbar} nav justify-content-end`}>
       {loginUserStatus === false ? (
         <>
-          <li className="nav-item">
-            <Link to="" className="nav-link">
+          <li className={`${styles.navbarItem} nav-item`}>
+            <Link to="" className={`${styles.navbarLink} nav-link`}>
               Home
             </Link>
           </li>
-          <li className="nav-item active">
-            <Link to="register" className="nav-link">
+          <li className={`${styles.navbarItem} nav-item active`}>
+            <Link to="register" className={`${styles.navbarLink} nav-link`}>
               Register
             </Link>
           </li>
-          <li className="nav-item active">
-            <Link to="login" className="nav-link">
+          <li className={`${styles.navbarItem} nav-item active`}>
+            <Link to="login" className={`${styles.navbarLink} nav-link`}>
               Login
             </Link>
           </li>
         </>
       ) : (
-        <li className="nav-item active">
-          <Link to="login" className="nav-link" onClick={logOut}>
-            <p className="fs-3">Welcome {currentUser.username},</p>
+        <li className={`${styles.navbarItem} nav-item active`}>
+          <Link
+            to="login"
+            className={`${styles.navbarLink} nav-link`}
+            onClick={logOut}
+          >
+            <p className={`${styles.userName}`}>
+              Welcome {currentUser.username}
+            </p>
             LogOut
           </Link>
         </li>

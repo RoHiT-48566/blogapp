@@ -1,0 +1,50 @@
+/* Footer.module.css */
+
+/* General Styles */
+.footer {
+  padding: 2rem 1rem;
+  font-family: "Inconsolata", monospace;
+  color: #ffffff;
+  background-color: black;
+}
+
+.footerList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footerItem {
+  margin: 0.5rem 0;
+}
+
+.footerLink {
+  color: #17a2b8;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footerLink:hover {
+  color: #ffffff;
+}
+
+.footerLogo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media (min-width: 576px) {
+  .footerList {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .footerItem {
+    margin: 0 1rem;
+  }
+}

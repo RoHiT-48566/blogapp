@@ -1,0 +1,68 @@
+/* Navbar.module.css */
+
+/* General Styles */
+.navbar {
+  font-family: "Inconsolata", monospace;
+  padding: 0.5rem;
+  background-color: black;
+}
+
+.navbarItem {
+  margin: 0;
+}
+
+.navbarLink {
+  color: #ffffff;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbarLink:hover {
+  color: #17a2b8;
+}
+
+.fs3 {
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  color: #ffffff;
+}
+
+/* User Name Display */
+.userName {
+  font-size: 1rem;
+  color: #ffffff;
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  background-color: #17a2b8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .navbarItem {
+    margin: 0.5rem 0;
+  }
+
+  .fs3 {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .userName {
+    font-size: 0.9rem;
+    padding: 0.2rem 0.4rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbarLink {
+    font-size: 1rem;
+  }
+}

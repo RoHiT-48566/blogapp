@@ -16,6 +16,7 @@ import ArticlesByAuthor from "./components/ArticlesbyAuthor/ArticlesByAuthor";
 import Article from "./components/Article/Article";
 import Articles from "./components/Articles/Articles";
 import ErrorPage from "./components/ErrorPage";
+import "./App.css";
 // Lazy loading
 // Dynamic import of Articles
 // const Articles = lazy(() => import("./components/Articles/Articles"));

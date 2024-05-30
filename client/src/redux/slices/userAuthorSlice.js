@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Make http request using redux-thunk middleware
 export const userAuthorLoginThunk = createAsyncThunk(
   "user-author-login",
   async (userCredObj, thunkApi) => {
@@ -16,18 +15,13 @@ export const userAuthorLoginThunk = createAsyncThunk(
       const res = await axios.post(url, userCredObj);
       console.log(res.data);
 
-      // Check if login is successful
       if (res.data.message === "Login successful") {
-        // Store the token in localStorage
         localStorage.setItem("token", res.data.token);
-        // Return the response data
         return res.data;
       } else {
-        // If login failed, reject with error message
         return thunkApi.rejectWithValue(res.data.message);
       }
     } catch (err) {
-      // Handle any other errors
       return thunkApi.rejectWithValue(err.message);
     }
   }
@@ -58,7 +52,7 @@ export const userAuthorSlice = createSlice({
       })
       .addCase(userAuthorLoginThunk.fulfilled, (state, action) => {
         state.isPending = false;
-        state.currentUser = action.payload.user; // Ensure 'user' is present in payload
+        state.currentUser = action.payload.user;
         state.loginUserStatus = true;
         state.errMsg = "";
         state.errorOccured = false;
@@ -67,12 +61,11 @@ export const userAuthorSlice = createSlice({
         state.isPending = false;
         state.currentUser = {};
         state.loginUserStatus = false;
-        state.errMsg = action.payload; // Error message from thunkApi.rejectWithValue
+        state.errMsg = action.payload;
         state.errorOccured = true;
       }),
 });
 
-// Export action creator function
 export const { resetState } = userAuthorSlice.actions;
-// Export root reducer of this slice
+
 export default userAuthorSlice.reducer;
